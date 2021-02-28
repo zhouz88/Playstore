@@ -1,4 +1,4 @@
-package zhengzhou.individual.interview.Util;
+package zhengzhou.individual.interview.util;
 
 import lombok.Builder;
 import lombok.Getter;
