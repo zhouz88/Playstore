@@ -5,14 +5,11 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -84,7 +81,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
             return;
         }
         holder.getTextView().setText(data.get(position).titleText);
-
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setUri(Uri.parse(data.get(position).imageSource))
                 .setAutoPlayAnimations(true)
