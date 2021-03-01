@@ -1,6 +1,7 @@
 package zhengzhou.individual.interview;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -80,13 +84,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
             return;
         }
         holder.getTextView().setText(data.get(position).titleText);
-        Glide.with(holder.getImageView().getContext())
-                .setDefaultRequestOptions
-                        (new RequestOptions()
-                                .placeholder(R.drawable.ic_launcher_foreground)
-                                .error(R.drawable.ic_launcher_foreground))
-                .load(data.get(position).imageSource)
-                .into(holder.getImageView());
+
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(Uri.parse(data.get(position).imageSource))
+                .setAutoPlayAnimations(true)
+                .build();
+        holder.getImageView().setController(controller);
     }
 
     @Override
@@ -102,7 +105,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     public static final class AdapterViewHolder extends RecyclerView.ViewHolder {
         @Getter
         @Setter
-        private ImageView imageView;
+        private SimpleDraweeView imageView;
         @Getter
         @Setter
         private TextView textView;

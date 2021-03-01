@@ -8,6 +8,7 @@
         android:icon="@mipmap/ic_cat"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".AppApplication"
         android:theme="@style/Theme.Interview">
         <activity android:name=".MainActivity">
             <intent-filter>
