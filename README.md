@@ -1,4 +1,4 @@
-# Rxjava and Retrofit and notifications
+# Fresco/Glide comparison
 
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
@@ -7,3 +7,4 @@
 
 1. Use Rxjava
 2. Use notifications
+3. Retrofit and notifications
