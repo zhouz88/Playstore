@@ -17,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.rec_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new Adapter(new ArrayList<>(), this));
+        recyclerView.setAdapter(Adapter
+                .builder()
+                .context(this)
+                .data(new ArrayList<>())
+                .build());
     }
 }

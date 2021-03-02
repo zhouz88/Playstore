@@ -9,7 +9,7 @@
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/image_view"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="300dp"
         fresco:actualImageScaleType="centerCrop"
         fresco:placeholderImage="@mipmap/ic_cat"
         fresco:placeholderImageScaleType="centerCrop"/>

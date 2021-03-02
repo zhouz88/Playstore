@@ -12,7 +12,6 @@ public interface NewsBreakApiInterface {
                                                 @Query("token") String token, @Query("lat") String lat,
                                                 @Query("lng") String lng);
 
-
     @HTTP(method = "GET", path = "/serving")
     Call<ResponseResult> getNewsService(@Query("app") String app,
                                               @Query("token") String token, @Query("lat") String lat,

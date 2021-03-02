@@ -43,9 +43,8 @@ public class NewsBreakApiService {
                 .builder()
                 .app("interview")
                 .token("hA7lIIPoxZWmhF9wd4muThQGiJzUwwW0")
-                .lat("41.8778344")
-                .lng("-87.6315493")
+                .lat("47.6062")
+                .lng("122.3321")
                 .build());
     }
-    // Subscriber (viewmodel) will subscribe to an observable (retrofit) and react to therir events
 }

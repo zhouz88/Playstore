@@ -5,14 +5,11 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -38,6 +35,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     private boolean showLoading;
     private Context context;
 
+    @Builder
     public Adapter(List<ResponseResult.Result.Document> data, Context context) {
         this.data = data;
         showLoading = true;
@@ -63,8 +61,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     public void onBindViewHolder(@NonNull Adapter.AdapterViewHolder holder, int position) {
         if (getItemViewType(position) == VIEW_TYPE) {
             api.getNewsApiSingle()
-                    .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.newThread())
                     .subscribeWith(new DisposableSingleObserver<ResponseResult>() {
                         @Override
                         public void onSuccess(ResponseResult value) {

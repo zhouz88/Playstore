@@ -14,7 +14,8 @@ public class GetNewsAPICompositeKey {
     String lng;
 
     @Builder
-    public GetNewsAPICompositeKey(@NonNull String app, @NonNull String token, @NonNull String lat, @NonNull String lng) {
+    public GetNewsAPICompositeKey(@NonNull String app, @NonNull String token,
+                                  @NonNull String lat, @NonNull String lng) {
         this.app = app;
         this.token = token;
         this.lat = lat;
