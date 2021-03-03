@@ -1,7 +1,9 @@
 package zhengzhou.individual.interview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import io.reactivex.schedulers.Schedulers;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import zhengzhou.individual.interview.details.DetailsActivity;
 import zhengzhou.individual.interview.notifications.NotificationsHelper;
 import zhengzhou.individual.interview.util.NewsBreakApiService;
 import zhengzhou.individual.interview.util.ResponseResult;
@@ -88,6 +91,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
                 .setAutoPlayAnimations(true)
                 .build();
         holder.getImageView().setController(controller);
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("imageurl", data.get(position).imageSource);
+                bundle.putString("text", data.get(position).summary);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -111,6 +126,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
         @Builder
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
+            if (itemView.findViewById(R.id.image_view) == null) {
+                // progress bar
+                return;
+            }
             imageView = itemView.findViewById(R.id.image_view);
             textView = itemView.findViewById(R.id.text_view);
         }
