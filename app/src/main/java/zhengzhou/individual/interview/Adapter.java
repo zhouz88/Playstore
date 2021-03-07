@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,14 +26,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import zhengzhou.individual.interview.details.DetailsActivity;
+import zhengzhou.individual.interview.loadingTasks.LoadingActivity;
 import zhengzhou.individual.interview.notifications.NotificationsHelper;
 import zhengzhou.individual.interview.util.NewsBreakApiService;
 import zhengzhou.individual.interview.util.ResponseResult;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
-    private final NewsBreakApiService api = new NewsBreakApiService();
-    private static int VIEW_TYPE = 0;
-    private static int DATA_TYPE = 1;
+    private final NewsBreakApiService api = NewsBreakApiService.getInstance();
+    private static final int VIEW_TYPE = 0;
+    private static final int DATA_TYPE = 1;
+    private static final int BUTTON_TYPE = 2;
 
     private List<ResponseResult.Result.Document> data;
     private boolean showLoading;
@@ -48,21 +51,30 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     @NonNull
     @Override
     public Adapter.AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE) {
-            return AdapterViewHolder.builder()
-                    .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.progressbar,
-                            parent, false))
-                    .build();
+        switch (viewType) {
+            case VIEW_TYPE:
+                return AdapterViewHolder.builder()
+                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.progressbar,
+                                parent, false))
+                        .build();
+            case DATA_TYPE:
+                return AdapterViewHolder.builder()
+                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view,
+                                parent, false))
+                        .build();
+            case BUTTON_TYPE:
+                return AdapterViewHolder.builder()
+                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.change_location_button_view,
+                                parent, false))
+                        .build();
         }
-        return AdapterViewHolder.builder()
-                .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view,
-                        parent, false))
-                .build();
+        return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull Adapter.AdapterViewHolder holder, int position) {
-        if (getItemViewType(position) == VIEW_TYPE) {
+        int type = getItemViewType(position);
+        if (type == VIEW_TYPE) {
             api.getNewsApiSingle()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.newThread())
@@ -84,10 +96,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
                     });
             return;
         }
-        holder.getTextView().setText(data.get(position).titleText);
+        if (type == BUTTON_TYPE) {
+            holder.getButton().setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LoadingActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+            return;
+        }
+        final int index = position - 1;
+        holder.getTextView().setText(data.get(index).titleText);
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setUri(Uri.parse(data.get(position).imageSource))
+                .setUri(Uri.parse(data.get(index).imageSource))
                 .setAutoPlayAnimations(true)
                 .build();
         holder.getImageView().setController(controller);
@@ -97,8 +120,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailsActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("imageurl", data.get(position).imageSource);
-                bundle.putString("text", data.get(position).summary);
+                bundle.putString("imageurl", data.get(index).imageSource);
+                bundle.putString("text", data.get(index).summary);
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }
@@ -107,12 +130,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     @Override
     public int getItemCount() {
-        return showLoading ? 1 : data.size();
+        return showLoading ? 1 : 1 + data.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return showLoading ? VIEW_TYPE : DATA_TYPE;
+        return showLoading ? VIEW_TYPE : (position == 0 ? BUTTON_TYPE: DATA_TYPE);
     }
 
     public static final class AdapterViewHolder extends RecyclerView.ViewHolder {
@@ -122,12 +145,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
         @Getter
         @Setter
         private TextView textView;
+        @Getter
+        @Setter
+        private Button button;
 
         @Builder
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             if (itemView.findViewById(R.id.image_view) == null) {
-                // progress bar
+                // progress bar or button
+                button = itemView.findViewById(R.id.button);
                 return;
             }
             imageView = itemView.findViewById(R.id.image_view);

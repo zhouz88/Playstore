@@ -1,6 +1,5 @@
 package zhengzhou.individual.interview.util;
 
-
 import io.reactivex.Single;
 
 import retrofit2.Call;
@@ -9,10 +8,27 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsBreakApiService {
-    private final String BASE_URL = "https://openapi.newsbreak.com";
+    private static final String BASE_URL = "https://openapi.newsbreak.com";
+    private static volatile NewsBreakApiService service;
     private NewsBreakApiInterface api;
 
-    public NewsBreakApiService() {
+    public static NewsBreakApiService getInstance() {
+        if (service == null) {
+            synchronized (NewsBreakApiService.class) {
+                service = new NewsBreakApiService();
+                service.api = new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        // https://stackoverflow.com/questions/43434073/unable-to-create-call-adapter-for-io-reactivex-observable
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build()
+                        .create(NewsBreakApiInterface.class);
+            }
+        }
+        return service;
+    }
+
+    private NewsBreakApiService() {
         api = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 // https://stackoverflow.com/questions/43434073/unable-to-create-call-adapter-for-io-reactivex-observable
