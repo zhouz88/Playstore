@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -181,6 +180,7 @@ public final class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.Ad
                 URL url = new URL(data.get(position).imageSource);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
+                connection.setRequestMethod("GET");
                 connection.setConnectTimeout(20000);
                 int code = connection.getResponseCode();
                 if (code == 200) {
