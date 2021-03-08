@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +36,7 @@ import zhengzhou.individual.interview.notifications.NotificationsHelper;
 import zhengzhou.individual.interview.util.NewsBreakApiService;
 import zhengzhou.individual.interview.util.ResponseResult;
 
-public class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterViewHolder> {
+public final class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterViewHolder> {
     private final NewsBreakApiService api = NewsBreakApiService.getInstance();
     private final int VIEW_TYPE = 0;
     private final int DATA_TYPE = 1;
@@ -47,7 +49,7 @@ public class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterV
     @Builder
     public LoadingAdapter(List<ResponseResult.Result.Document> data, Context context, Handler handler) {
         this.data = data;
-        showLoading = true;
+        this.showLoading = true;
         this.context = context;
         this.handler = handler;
     }
@@ -55,19 +57,10 @@ public class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterV
     @NonNull
     @Override
     public LoadingAdapter.AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case VIEW_TYPE:
-                return AdapterViewHolder.builder()
-                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.progressbar,
-                                parent, false))
-                        .build();
-            case DATA_TYPE:
-                return AdapterViewHolder.builder()
-                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.loading_task,
-                                parent, false))
-                        .build();
-        }
-        return null;
+        return AdapterViewHolder.builder()
+                .itemView(LayoutInflater.from(parent.getContext()).inflate(getLayoutByViewType(viewType),
+                        parent, false))
+                .build();
     }
 
     @Override
@@ -102,7 +95,7 @@ public class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterV
 
             @Override
             public void onClick(View v) {
-                if (count % 2 == 0) {
+                if (count == 0) {
                     count++;
                     ((Button) v).setTextColor(Color.GRAY);
                     if (runnable == null) {
@@ -115,9 +108,9 @@ public class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterV
                                 .build();
                     }
                     task = AdapterAsyncTask
-                                .builder()
-                                .callable(runnable)
-                                .build();
+                            .builder()
+                            .callable(runnable)
+                            .build();
                     runnable.setTask(task);
                     ThreadPoolUtil.getService().execute(task);
                 } else {
@@ -223,5 +216,16 @@ public class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterV
             }
             return null;
         }
+    }
+
+    @LayoutRes
+    private int getLayoutByViewType(int viewType) {
+        switch (viewType) {
+            case VIEW_TYPE:
+                return R.layout.progressbar;
+            case DATA_TYPE:
+                return R.layout.loading_task;
+        }
+        return -1;
     }
 }

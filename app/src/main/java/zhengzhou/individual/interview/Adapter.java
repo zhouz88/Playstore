@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,24 +53,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     @NonNull
     @Override
     public Adapter.AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case VIEW_TYPE:
-                return AdapterViewHolder.builder()
-                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.progressbar,
-                                parent, false))
-                        .build();
-            case DATA_TYPE:
-                return AdapterViewHolder.builder()
-                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view,
-                                parent, false))
-                        .build();
-            case BUTTON_TYPE:
-                return AdapterViewHolder.builder()
-                        .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.change_location_button_view,
-                                parent, false))
-                        .build();
-        }
-        return null;
+        return AdapterViewHolder.builder()
+                .itemView(LayoutInflater.from(parent.getContext()).inflate(getLayoutByViewType(viewType),
+                        parent, false))
+                .build();
     }
 
     @Override
@@ -97,7 +85,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
             return;
         }
         if (type == BUTTON_TYPE) {
-            holder.getButton().setOnClickListener(new View.OnClickListener(){
+            holder.getButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, LoadingActivity.class);
@@ -114,8 +102,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
                 .setAutoPlayAnimations(true)
                 .build();
         holder.getImageView().setController(controller);
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailsActivity.class);
@@ -135,7 +122,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return showLoading ? VIEW_TYPE : (position == 0 ? BUTTON_TYPE: DATA_TYPE);
+        return showLoading ? VIEW_TYPE : (position == 0 ? BUTTON_TYPE : DATA_TYPE);
     }
 
     @Getter
@@ -156,5 +143,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
             imageView = itemView.findViewById(R.id.image_view);
             textView = itemView.findViewById(R.id.text_view);
         }
+    }
+
+    @LayoutRes
+    private int getLayoutByViewType(int viewType) {
+        switch (viewType) {
+            case VIEW_TYPE:
+                return R.layout.progressbar;
+            case DATA_TYPE:
+                return R.layout.item_view;
+            case BUTTON_TYPE:
+                return R.layout.change_location_button_view;
+        }
+        return -1;
     }
 }
