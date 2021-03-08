@@ -81,5 +81,4 @@ public class DetailsPageAdapter extends RecyclerView.Adapter {
             progressBar = itemView.findViewById(R.id.pb);
         }
     }
-
 }
