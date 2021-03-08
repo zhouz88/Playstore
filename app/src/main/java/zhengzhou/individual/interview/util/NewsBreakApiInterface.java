@@ -8,9 +8,9 @@ import retrofit2.http.Query;
 
 public interface NewsBreakApiInterface {
     @GET("/serving")
-    Single<ResponseResult> getNewsServiceResult(@Query("app") String app,
-                                                @Query("token") String token, @Query("lat") String lat,
-                                                @Query("lng") String lng);
+    Single<ResponseResult> getNewsServiceResult(@Query("app") String application,
+                                                @Query("token") String token, @Query("lat") String latitude,
+                                                @Query("lng") String longitude);
 
     @HTTP(method = "GET", path = "/serving")
     Call<ResponseResult> getNewsService(@Query("app") String app,

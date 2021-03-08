@@ -42,10 +42,10 @@ public class NewsBreakApiService {
         Call<ResponseResult> call = api.callGetNewsServiceApi(
                 GetNewsAPICompositeKey
                         .builder()
-                        .app("interview")
-                        .token("hA7lIIPoxZWmhF9wd4muThQGiJzUwwW0")
-                        .lat("41.8778344")
-                        .lng("-87.6315493")
+                        .applicationName("interview")
+                        .tokenName("hA7lIIPoxZWmhF9wd4muThQGiJzUwwW0")
+                        .latitude("47.6062")
+                        .longitude("122.3321")
                         .build());
         try {
             return call.execute().body();
@@ -57,10 +57,10 @@ public class NewsBreakApiService {
     public Single<ResponseResult> getNewsApiSingle() {
         return api.callGetNewsServiceResultApi(GetNewsAPICompositeKey
                 .builder()
-                .app("interview")
-                .token("hA7lIIPoxZWmhF9wd4muThQGiJzUwwW0")
-                .lat("47.6062")
-                .lng("122.3321")
+                .applicationName("interview")
+                .tokenName("hA7lIIPoxZWmhF9wd4muThQGiJzUwwW0")
+                .latitude("47.6062")
+                .longitude("122.3321")
                 .build());
     }
 }
