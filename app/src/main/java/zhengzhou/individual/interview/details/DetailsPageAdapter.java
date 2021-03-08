@@ -18,14 +18,14 @@ import lombok.Getter;
 import lombok.Setter;
 import zhengzhou.individual.interview.R;
 
-public class DetailsPageAdatper extends RecyclerView.Adapter {
+public class DetailsPageAdapter extends RecyclerView.Adapter {
     String imageUrl;
     String text;
     Context context;
 
     @Builder
-    public DetailsPageAdatper(String imageUrl, Context context,
-            String text) {
+    public DetailsPageAdapter(String imageUrl, Context context,
+                              String text) {
         this.imageUrl = imageUrl;
         this.text = text;
         this.context = context;
@@ -66,15 +66,11 @@ public class DetailsPageAdatper extends RecyclerView.Adapter {
         return position;
     }
 
+    @Getter
+    @Setter
     public static final class AdapterViewHolder extends RecyclerView.ViewHolder {
-        @Getter
-        @Setter
         private ImageView imageView;
-        @Getter
-        @Setter
         private TextView textView;
-        @Getter
-        @Setter
         private ProgressBar progressBar;
 
         @Builder

@@ -10,8 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewsBreakApiService {
     private static final String BASE_URL = "https://openapi.newsbreak.com";
     private static volatile NewsBreakApiService service;
-    private NewsBreakApiInterface api;
-
     public static NewsBreakApiService getInstance() {
         if (service == null) {
             synchronized (NewsBreakApiService.class) {
@@ -27,6 +25,8 @@ public class NewsBreakApiService {
         }
         return service;
     }
+
+    private NewsBreakApiInterface api;
 
     private NewsBreakApiService() {
         api = new Retrofit.Builder()

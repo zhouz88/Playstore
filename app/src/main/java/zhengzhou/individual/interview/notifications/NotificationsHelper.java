@@ -18,14 +18,7 @@ import zhengzhou.individual.interview.R;
 
 public class NotificationsHelper {
 
-    public NotificationsHelper(Context context) {
-        this.context = context;
-
-    }
-
     private static volatile NotificationsHelper instance;
-
-    private Context context;
 
     public static NotificationsHelper getInstance(Context context) {
         if (instance == null) {
@@ -34,6 +27,13 @@ public class NotificationsHelper {
             }
         }
         return instance;
+    }
+
+    private Context context;
+
+    public NotificationsHelper(Context context) {
+        this.context = context;
+
     }
 
     public void createNotification() {

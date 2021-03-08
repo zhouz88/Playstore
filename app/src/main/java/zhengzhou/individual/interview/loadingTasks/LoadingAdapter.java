@@ -1,6 +1,5 @@
 package zhengzhou.individual.interview.loadingTasks;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
@@ -140,13 +139,10 @@ public class LoadingAdapter extends RecyclerView.Adapter<LoadingAdapter.AdapterV
         return showLoading ? VIEW_TYPE : DATA_TYPE;
     }
 
+    @Getter
+    @Setter
     public static final class AdapterViewHolder extends RecyclerView.ViewHolder {
-        @Getter
-        @Setter
         private Button button;
-
-        @Getter
-        @Setter
         private ProgressBar bar;
 
         @Builder

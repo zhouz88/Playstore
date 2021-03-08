@@ -21,7 +21,7 @@ public class DetailsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rec_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerView.setAdapter(DetailsPageAdatper
+        recyclerView.setAdapter(DetailsPageAdapter
                 .builder()
                 .context(this)
                 .imageUrl(intent.getStringExtra("imageurl"))

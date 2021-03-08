@@ -11,10 +11,10 @@ import java.net.URL;
 
 
 public class DetailsPageAsyncTask extends AsyncTask<Void, Integer, Bitmap> {
-    String imageUrl;
-    DetailsPageAdatper.AdapterViewHolder holder;
+    private String imageUrl;
+    private DetailsPageAdapter.AdapterViewHolder holder;
 
-    public DetailsPageAsyncTask(String imageUrl, DetailsPageAdatper.AdapterViewHolder holder) {
+    public DetailsPageAsyncTask(String imageUrl, DetailsPageAdapter.AdapterViewHolder holder) {
         this.imageUrl = imageUrl;
         this.holder = holder;
     }

@@ -138,15 +138,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
         return showLoading ? VIEW_TYPE : (position == 0 ? BUTTON_TYPE: DATA_TYPE);
     }
 
+    @Getter
+    @Setter
     public static final class AdapterViewHolder extends RecyclerView.ViewHolder {
-        @Getter
-        @Setter
         private SimpleDraweeView imageView;
-        @Getter
-        @Setter
         private TextView textView;
-        @Getter
-        @Setter
         private Button button;
 
         @Builder
