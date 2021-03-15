@@ -1,4 +1,4 @@
-package zhengzhou.individual.interview;
+package zhengzhou.individual.interview.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,30 +20,34 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import zhengzhou.individual.interview.R;
 import zhengzhou.individual.interview.details.DetailsActivity;
-import zhengzhou.individual.interview.loadingTasks.LoadingActivity;
 import zhengzhou.individual.interview.notifications.NotificationsHelper;
+import zhengzhou.individual.interview.util.GetNewsAPICompositeKey;
 import zhengzhou.individual.interview.util.NewsBreakApiService;
 import zhengzhou.individual.interview.util.ResponseResult;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterViewHolder> {
     private final NewsBreakApiService api = NewsBreakApiService.getInstance();
-    private static final int VIEW_TYPE = 0;
+    private static final int PORGRESSBAR_TYPE = 0;
     private static final int DATA_TYPE = 1;
-    private static final int BUTTON_TYPE = 2;
+    private static final int FIRST_DATA_TYPE = 2;
 
     private List<ResponseResult.Result.Document> data;
     private boolean showLoading;
     private Context context;
+    private double lgt = 122.3321;
+    private double ltd = 47.6062;
 
     @Builder
-    public Adapter(List<ResponseResult.Result.Document> data, Context context) {
+    public NewsAdapter(List<ResponseResult.Result.Document> data, Context context) {
         this.data = data;
         showLoading = true;
         this.context = context;
@@ -51,7 +55,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     @NonNull
     @Override
-    public Adapter.AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NewsAdapter.AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return AdapterViewHolder.builder()
                 .itemView(LayoutInflater.from(parent.getContext()).inflate(getLayoutByViewType(viewType),
                         parent, false))
@@ -59,17 +63,34 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter.AdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewsAdapter.AdapterViewHolder holder, int position) {
         int type = getItemViewType(position);
-        if (type == VIEW_TYPE) {
-            api.getNewsApiSingle()
-                    .observeOn(AndroidSchedulers.mainThread())
+        if (type == PORGRESSBAR_TYPE) {
+            GetNewsAPICompositeKey key = GetNewsAPICompositeKey
+                    .builder()
+                    .applicationName("interview")
+                    .tokenName("hA7lIIPoxZWmhF9wd4muThQGiJzUwwW0")
+                    .latitude(String.valueOf(ltd))
+                    .longitude(String.valueOf(lgt))
+                    .build();
+            lgt -= 5;
+            ltd += 5;
+            api.callGetNewsApiObserver(key)
                     .subscribeOn(Schedulers.newThread())
-                    .subscribeWith(new DisposableSingleObserver<ResponseResult>() {
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<ResponseResult>() {
                         @Override
-                        public void onSuccess(ResponseResult value) {
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(ResponseResult value) {
+                            if (value.result.size() == 0 || value.result.get(0).documents.size() == 0) {
+                                showLoading = false;
+                                return;
+                            }
                             data.addAll(value.result.get(0).documents);
-                            showLoading = false;
                             notifyDataSetChanged();
                             NotificationsHelper.
                                     getInstance(context.getApplicationContext()).createNotification();
@@ -80,20 +101,36 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
                             showLoading = false;
                             notifyDataSetChanged();
                         }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
                     });
             return;
         }
-        if (type == BUTTON_TYPE) {
-            holder.getButton().setOnClickListener(new View.OnClickListener() {
+        int index = position;
+        if (type == FIRST_DATA_TYPE) {
+            holder.getTextView().setText(data.get(index).titleText);
+
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setUri(Uri.parse(data.get(index).imageSource))
+                    .setAutoPlayAnimations(true)
+                    .build();
+            holder.getImageView().setController(controller);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, LoadingActivity.class);
+                    Intent intent = new Intent(context, DetailsActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("imageurl", data.get(index).imageSource);
+                    bundle.putString("text", data.get(index).summary);
+                    intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
             });
             return;
         }
-        final int index = position - 1;
         holder.getTextView().setText(data.get(index).titleText);
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()
@@ -116,12 +153,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     @Override
     public int getItemCount() {
-        return showLoading ? 1 : 1 + data.size();
+        return showLoading ?  data.size() + 1 : data.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return showLoading ? VIEW_TYPE : (position == 0 ? BUTTON_TYPE : DATA_TYPE);
+        if (showLoading) {
+            if (position < data.size()) {
+                if (position == 0) {
+                    return FIRST_DATA_TYPE;
+                } else {
+                    return DATA_TYPE;
+                }
+            } else {
+                return PORGRESSBAR_TYPE;
+            }
+        } else {
+            if (position == 0) {
+                return FIRST_DATA_TYPE;
+            } else {
+                return DATA_TYPE;
+            }
+        }
     }
 
     @Getter
@@ -147,12 +200,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     @LayoutRes
     private int getLayoutByViewType(int viewType) {
         switch (viewType) {
-            case VIEW_TYPE:
+            case PORGRESSBAR_TYPE:
                 return R.layout.progressbar;
             case DATA_TYPE:
                 return R.layout.item_view;
-            case BUTTON_TYPE:
-                return R.layout.change_location_button_view;
+            case FIRST_DATA_TYPE:
+                return R.layout.item_view_first;
         }
         return -1;
     }

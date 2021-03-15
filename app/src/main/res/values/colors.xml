@@ -7,4 +7,26 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="topBarColor">#ee4647</color>
+    <color name="topBarColorLow">#F27979</color>
+    <color name="search_bar_text_color">#f49f9f</color>
+
+    <color name="colorPrimaryDark">@color/topBarColor</color>
+    <color name="colorPrimary">@color/colorPrimaryDark</color>
+    <color name="colorAccent">#00BCD4</color>
+    <color name="colorLightPrimary">@color/topBarColorLow</color>
+    <color name="colorPrimaryText">#212121</color>
+
+    <color name="has_play_color">#FF5468</color>
+    <color name="origin_background_color">#70ffffff</color>
+    <color name="has_buffer_color">#ffffff</color>
+    <color name="thumb_out">#70ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_white">#EEFFFFFF</color>
+    <color name="divider">#c7c7c7</color>
+    <color name="shadow_divider">#e4e4e4</color>
+    <color name="gray_divider">#88c7c7c7</color>
+
+    <color name="place_holder_bg">#33000000</color>
 </resources>
