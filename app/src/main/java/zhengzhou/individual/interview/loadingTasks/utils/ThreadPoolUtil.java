@@ -12,7 +12,7 @@ public class ThreadPoolUtil {
         @Override
         public Thread newThread(Runnable runnable) {
             Thread thread = new Thread(runnable, "ThreadPoolUtils");
-            Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+            thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
             return thread;
         }
     });

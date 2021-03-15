@@ -11,17 +11,14 @@ import android.os.Looper;
 import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -155,6 +152,7 @@ public class MusicDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         if (v == btn_main_play) {
             if (mp3Url == null) {
+                btn_main_play.setClickable(false);
                 ThreadPoolUtil.getService().execute(new Runnable() {
                     @Override
                     public void run() {
