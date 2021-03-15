@@ -20,6 +20,7 @@
 
         <activity
             android:name=".musicdetails.MusicDetailsActivity"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.InterviewMain">
         </activity>
         <activity
@@ -35,6 +36,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/Theme.InterviewMain"
             android:name=".details.DetailsActivity"
             android:launchMode="singleTop" />
 

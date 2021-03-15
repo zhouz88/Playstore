@@ -125,6 +125,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterViewHol
                     Bundle bundle = new Bundle();
                     bundle.putString("imageurl", data.get(index).imageSource);
                     bundle.putString("text", data.get(index).summary);
+                    bundle.putString("textTitle", data.get(index).titleText);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
@@ -145,6 +146,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterViewHol
                 Bundle bundle = new Bundle();
                 bundle.putString("imageurl", data.get(index).imageSource);
                 bundle.putString("text", data.get(index).summary);
+                bundle.putString("textTitle", data.get(index).titleText);
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }
