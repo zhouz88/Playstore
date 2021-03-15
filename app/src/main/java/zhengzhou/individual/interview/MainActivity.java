@@ -1,5 +1,6 @@
 package zhengzhou.individual.interview;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.navigation.NavigationView;
 
 import zhengzhou.individual.interview.fragments.MusicFragment;
@@ -62,5 +64,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder,
                     new NewsFragment()).commit();
         }
+    }
+
+    private void setupNavHeader() {
+        View headerView = navigationView.getHeaderView(0);
+
+        ((TextView) headerView.findViewById(R.id.text_view)).setText(
+                "zheng zhou");
+
+        ((SimpleDraweeView) headerView.findViewById(R.id.image_view))
+                .setImageURI(Uri.parse("https://p1.music.126.net/4DRm5E8ahUJu5r1c4cNNbQ==/2450811418334469.jpg"));
+
     }
 }
