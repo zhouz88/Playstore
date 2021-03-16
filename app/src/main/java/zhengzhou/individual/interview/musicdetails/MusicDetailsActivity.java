@@ -32,7 +32,7 @@ import zhengzhou.individual.interview.loadingTasks.utils.ThreadPoolUtil;
 import zhengzhou.individual.interview.util.CloudMusicService;
 import zhengzhou.individual.interview.util.SongResult;
 
-public class MusicDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public final class MusicDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btn_main_play;
     private Button btn_main_stop;
     private Button btn_main_pause;
@@ -48,11 +48,12 @@ public class MusicDetailsActivity extends AppCompatActivity implements View.OnCl
     private MusicService.NewBinder mBinder;
     private MusicService musicService;
     boolean mBound = false;
-  /*
-  两种service的区别：
-  使用startService()方法启用服务，调用者与服务之间没有关连，即使调用者退出了，
-  服务仍然运行。 使用bindService()方法启用服务，调用者与服务绑定在了一起，调用者一旦退出，服务也就终止。Feb
-   */
+
+    /*
+      两种service的区别：
+      使用startService()方法启用服务，调用者与服务之间没有关连，即使调用者退出了，
+      服务仍然运行。 使用bindService()方法启用服务，调用者与服务绑定在了一起，调用者一旦退出，服务也就终止。Feb
+    */
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         public void handleMessage(android.os.Message msg) {
@@ -122,14 +123,13 @@ public class MusicDetailsActivity extends AppCompatActivity implements View.OnCl
         btn_main_exit.setOnClickListener(this);
     }
 
-
     private void initAnimator() {
         mAnimator = ObjectAnimator.ofFloat(iv, "rotation", 0.0f, 360.0f);
-        mAnimator.setDuration(5000);//设定转一圈的时间
-        mAnimator.setRepeatCount(Animation.INFINITE);//设定无限循环
-        mAnimator.setRepeatMode(ObjectAnimator.RESTART);// 循环模式
-        mAnimator.setInterpolator(new LinearInterpolator());// 匀速
-        mAnimator.start();//动画开始
+        mAnimator.setDuration(5000); //设定转一圈的时间
+        mAnimator.setRepeatCount(Animation.INFINITE); //设定无限循环
+        mAnimator.setRepeatMode(ObjectAnimator.RESTART); // 循环模式
+        mAnimator.setInterpolator(new LinearInterpolator()); // 匀速
+        mAnimator.start(); //动画开始
         mAnimator.resume();
     }
 
@@ -147,21 +147,20 @@ public class MusicDetailsActivity extends AppCompatActivity implements View.OnCl
             }
         }
     };
-
+    boolean started = false;
     @Override
     public void onClick(View v) {
-        if (v == btn_main_play) {
+        if (v == btn_main_play && !started) {
+            started = true;
             if (mp3Url == null) {
-                btn_main_play.setClickable(false);
                 ThreadPoolUtil.getService().execute(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            final Handler mHandler = new Handler(Looper.getMainLooper());
                             final SongResult songResult =
                                     service.getApi().getSongById(mp3Id).execute().body();
                             mp3Url = songResult.data.get(0).url;
-                            mHandler.post(new Runnable() {
+                            handler.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     musicService.playMusic(mp3Url);
@@ -180,9 +179,11 @@ public class MusicDetailsActivity extends AppCompatActivity implements View.OnCl
             }
         } else if (v == btn_main_stop) {
             musicService.stopMusic();
+            started = false;
             mAnimator.pause();
         } else if (v == btn_main_pause) {
             musicService.pauseMusic();
+            started = false;
             mAnimator.pause();
         } else if (v == btn_main_exit) {
             unbindService(connection);

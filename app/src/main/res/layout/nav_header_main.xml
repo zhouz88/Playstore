@@ -13,7 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/imageView"
+        android:id="@+id/image_view"
         android:layout_width="62dp"
         android:layout_height="60dp"
         app:placeholderImage="@mipmap/ic_cat"
@@ -29,7 +29,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_view"
         android:textSize="12sp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"

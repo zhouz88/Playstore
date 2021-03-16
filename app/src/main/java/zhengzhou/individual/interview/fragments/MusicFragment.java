@@ -8,10 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import zhengzhou.individual.interview.R;
+import zhengzhou.individual.interview.util.SongImageResult;
 
 public class MusicFragment extends Fragment {
 
@@ -30,9 +35,22 @@ public class MusicFragment extends Fragment {
         return view;
     }
 
+    private List<SongImageResult.Al> data =  new ArrayList<>();
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MusicAdapter(getContext()));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position == data.size()) {
+                    return 2;
+                }
+                return 1;
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(MusicAdapter.builder().context(this.getContext()).data(this.data).build());
     }
 }

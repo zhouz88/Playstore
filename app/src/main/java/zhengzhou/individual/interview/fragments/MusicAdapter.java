@@ -25,6 +25,7 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import zhengzhou.individual.interview.MainActivity;
 import zhengzhou.individual.interview.R;
 import zhengzhou.individual.interview.loadingTasks.utils.ThreadPoolUtil;
 import zhengzhou.individual.interview.musicdetails.MusicDetailsActivity;
@@ -45,7 +46,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.AdapterViewH
             1440162979 + "",
             5142104 + "");
 
-    private List<SongImageResult.Al> data = new ArrayList<>();
+    private List<SongImageResult.Al> data;
     private List<SongImageResult.Al> tempList = new ArrayList<>();
     private boolean showLoading = true;
     private Object mutex = new Object();
@@ -56,9 +57,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.AdapterViewH
     private CloudMusicService service;
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    public MusicAdapter(Context context) {
+    @Builder
+    public MusicAdapter(Context context, List<SongImageResult.Al> data) {
         this.context = context;
         this.service = CloudMusicService.getInstance();
+        this.data = data;
     }
 
     @NonNull

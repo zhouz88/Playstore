@@ -56,12 +56,7 @@ public class MusicService extends Service {
 
     public void pauseMusic() {
         if (Objects.nonNull(player) && player.isPlaying()) {
-            player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
-                @Override
-                public void onSeekComplete(MediaPlayer mp) {
-                    mp.pause();
-                }
-            });
+            player.pause();
         }
     }
 
@@ -91,17 +86,12 @@ public class MusicService extends Service {
                         mp.start();
                     }
                 });
+                return;
             } catch (Exception e) {
 
             }
         }
 
-        player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
-            @Override
-            public void onSeekComplete(MediaPlayer mp) {
-                mp.start();
-            }
-        });
-
+        player.start();
     }
 }
