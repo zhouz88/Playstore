@@ -133,7 +133,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterViewHol
             return;
         }
         holder.getTextView().setText(data.get(index).titleText);
-
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setUri(Uri.parse(data.get(index).imageSource))
                 .setAutoPlayAnimations(true)

@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,7 @@ public class MusicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         View view = inflater.inflate(R.layout.music_fragment, container, false);
         recyclerView = view.findViewById(R.id.music_rec_view);
         return view;
@@ -52,5 +56,18 @@ public class MusicFragment extends Fragment {
         });
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(MusicAdapter.builder().context(this.getContext()).data(this.data).build());
+    }
+
+    @Subscribe   //这里没有指定线程模型，使用默认值
+    public void onStringEvent(ThumbsUpClickedEvent event) {
+        ((TextView) event.subView)
+                .getCompoundDrawables()[0].setTint(getContext()
+                .getResources().getColor(R.color.colorPrimaryDark));
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
     }
 }

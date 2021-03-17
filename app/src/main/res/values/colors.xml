@@ -15,6 +15,7 @@
     <color name="colorPrimaryDark">@color/topBarColor</color>
     <color name="colorPrimary">@color/colorPrimaryDark</color>
     <color name="colorAccent">#00BCD4</color>
+    <color name="loveicon">#ed4956</color>
     <color name="colorLightPrimary">@color/topBarColorLow</color>
     <color name="colorPrimaryText">#212121</color>
 

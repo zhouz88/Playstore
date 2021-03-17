@@ -68,7 +68,7 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
     /*
       两种service的区别：
       使用startService()方法启用服务，调用者与服务之间没有关连，即使调用者退出了，
-      服务仍然运行。 使用bindService()方法启用服务，调用者与服务绑定在了一起，调用者一旦退出，服务也就终止。Feb
+      服务仍然运行。 使用bindService()方法启用服务，调用者与服务绑定在了一起，调用者一旦退出，服务也就终止。
     */
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
@@ -185,14 +185,18 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
                 mAnimator.resume();
             }
         } else if (v == btn_main_stop) {
-            musicService.stopMusic();
-            started = false;
-            seekbar.setProgress(0);
-            mAnimator.pause();
+            if (musicService.getPlayer() != null) {
+                musicService.stopMusic();
+                started = false;
+                seekbar.setProgress(0);
+                mAnimator.pause();
+            }
         } else if (v == btn_main_pause) {
-            musicService.pauseMusic();
-            started = false;
-            mAnimator.pause();
+            if (musicService.getPlayer() != null && musicService.getPlayer().isPlaying()) {
+                musicService.pauseMusic();
+                started = false;
+                mAnimator.pause();
+            }
         } else if (v == btn_main_exit) {
             unbindService(connection);
             connection = null;

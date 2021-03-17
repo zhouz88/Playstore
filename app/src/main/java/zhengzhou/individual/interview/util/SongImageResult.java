@@ -31,6 +31,8 @@ public final class SongImageResult {
         @SerializedName("pic")
         @Expose
         public Long pic;
+
+        public boolean like =false;
     }
 
     public static class Song {

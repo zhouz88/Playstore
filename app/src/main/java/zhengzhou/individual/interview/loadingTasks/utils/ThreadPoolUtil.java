@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadFactory;
 
 public class ThreadPoolUtil {
     private static final ExecutorService mService =
-            Executors.newFixedThreadPool(5, new ThreadFactory() {
+            Executors.newFixedThreadPool(8, new ThreadFactory() {
         @Override
         public Thread newThread(Runnable runnable) {
             Thread thread = new Thread(runnable, "ThreadPoolUtils");
