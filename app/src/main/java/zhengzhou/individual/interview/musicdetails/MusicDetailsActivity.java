@@ -116,6 +116,7 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_launcher_foreground);
         toolbar.setTitle("");
+        ((TextView)toolbar.findViewById(R.id.toolbar_news)).setText("Music");
         setSupportActionBar(toolbar);
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()

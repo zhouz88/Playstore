@@ -24,7 +24,6 @@ public class DetailsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_launcher_foreground);
         toolbar.setTitle("");
-        ((TextView)toolbar.findViewById(R.id.toolbar_news)).setText("Music");
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.rec_view);
