@@ -92,7 +92,6 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
                                         final SongImageResult songResult =
                                                 service.getApi().getSongImageById(likeStatus.uid + "").execute().body();
                                         songResult.songs.get(0).al.id = likeStatus.uid;
-                                        Log.e("dafadsfasdfasdfa", songResult.songs.get(0).al.name);
                                         synchronized (mutex) {
                                             tempList.add(songResult.songs.get(0).al);
                                             if (tempList.size() == res.size()) {
