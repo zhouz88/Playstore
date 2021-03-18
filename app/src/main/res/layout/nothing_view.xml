@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
         android:layout_marginTop="15dp"
-        android:text="Add your liked music from music list"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="Add music from Music recommendations"
         android:textSize="15sp"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
     </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
