@@ -84,6 +84,18 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
                 public void run() {
                     try {
                         List<LikeStatus> res = Storage.db.likeStatusDao().getAll();
+                        if (res.size() == 0) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    data.addAll(tempList);
+                                    tempList.clear();
+                                    showLoading = false;
+                                    notifyDataSetChanged();
+                                }
+                            });
+                            return;
+                        }
                         for (LikeStatus likeStatus : res) {
                             ThreadPoolUtil.getService().execute(new Runnable() {
                                 @Override
