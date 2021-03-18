@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +50,7 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
 
     private static final int PORGRESSBAR_TYPE = 0;
     private static final int DATA_TYPE = 1;
+    private static final int NOTHING_TYPE = 2;
     private final Context context;
     private final CloudMusicService service;
     private List<SongImageResult.Al> data;
@@ -89,7 +89,6 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
                                 @Override
                                 public void run() {
                                     data.addAll(tempList);
-                                    tempList.clear();
                                     showLoading = false;
                                     notifyDataSetChanged();
                                 }
@@ -134,6 +133,9 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
             });
             return;
         }
+        if (viewType == NOTHING_TYPE) {
+            return;
+        }
         holder.getTextView().setText(data.get(position).name);
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setUri(Uri.parse(data.get(position).picUrl))
@@ -158,13 +160,16 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
 
     @Override
     public int getItemCount() {
-        return showLoading ? 1 : data.size();
+        return showLoading ? 1 : (data.size() == 0 ? 1 : data.size());
     }
 
     @Override
     public int getItemViewType(int position) {
         if (showLoading) {
             return PORGRESSBAR_TYPE;
+        }
+        if (data.size() == 0) {
+            return NOTHING_TYPE;
         }
         return DATA_TYPE;
     }
@@ -197,6 +202,8 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
                 return R.layout.progressbar;
             case DATA_TYPE:
                 return R.layout.item_music_like;
+            case NOTHING_TYPE:
+                return R.layout.nothing_view;
         }
         return -1;
     }
