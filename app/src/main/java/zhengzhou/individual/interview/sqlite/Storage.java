@@ -9,6 +9,6 @@ public class Storage {
 
     public static void init(Context context) {
         db = Room.databaseBuilder(context,
-                LikeDatabase.class, "likeStatus").build();
+                LikeDatabase.class, "DblikeStatus").build();
     }
 }

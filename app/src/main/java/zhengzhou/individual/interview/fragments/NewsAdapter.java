@@ -34,7 +34,7 @@ import zhengzhou.individual.interview.util.GetNewsAPICompositeKey;
 import zhengzhou.individual.interview.util.NewsBreakApiService;
 import zhengzhou.individual.interview.util.ResponseResult;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterViewHolder> {
+public final class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterViewHolder> {
     private final NewsBreakApiService api = NewsBreakApiService.getInstance();
     private static final int PORGRESSBAR_TYPE = 0;
     private static final int DATA_TYPE = 1;

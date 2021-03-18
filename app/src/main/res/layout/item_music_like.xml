@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            fresco:actualImageScaleType="centerCrop"
+            android:background="?attr/selectableItemBackground"
+            fresco:placeholderImage="@drawable/shot_placeholder"
+            fresco:placeholderImageScaleType="centerCrop"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_shot_detail_bar_height">
+            <TextView
+                android:id="@+id/shot_view_count"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:drawableLeft="@drawable/ic_favorite_gray_18dp"
+                android:drawablePadding="@dimen/spacing_xsmall" />
+
+            <TextView
+                android:id="@+id/text_view"
+                android:layout_width="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                tool:text="dafasdfasdfafdasfadfaf"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/cover"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
+
+</androidx.cardview.widget.CardView>

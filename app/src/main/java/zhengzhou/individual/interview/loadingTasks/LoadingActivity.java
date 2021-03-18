@@ -17,7 +17,7 @@ import zhengzhou.individual.interview.loadingTasks.utils.UIRunnable;
 
 import static zhengzhou.individual.interview.loadingTasks.LoadingAdapter.MESSAGE_POST_PROGRESS;
 
-public class LoadingActivity extends AppCompatActivity {
+public final class LoadingActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private final Handler handler = new MyHandler(this);
 

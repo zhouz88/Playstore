@@ -34,7 +34,7 @@ import zhengzhou.individual.interview.sqlite.Storage;
 import zhengzhou.individual.interview.util.CloudMusicService;
 import zhengzhou.individual.interview.util.SongImageResult;
 
-public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.AdapterViewHolder> {
+public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.AdapterViewHolder> {
 
     private List<String> copyIds = Arrays.asList(
             28718313 + "",

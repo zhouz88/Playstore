@@ -21,7 +21,7 @@ import java.util.List;
 import zhengzhou.individual.interview.R;
 import zhengzhou.individual.interview.util.SongImageResult;
 
-public class MusicFragment extends Fragment {
+public final class MusicFragment extends Fragment {
 
     private RecyclerView recyclerView;
 

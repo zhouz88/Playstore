@@ -6,9 +6,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-public class ThreadPoolUtil {
+public final class ThreadPoolUtil {
     private static final ExecutorService mService =
-            Executors.newFixedThreadPool(8, new ThreadFactory() {
+            Executors.newFixedThreadPool(5, new ThreadFactory() {
         @Override
         public Thread newThread(Runnable runnable) {
             Thread thread = new Thread(runnable, "ThreadPoolUtils");

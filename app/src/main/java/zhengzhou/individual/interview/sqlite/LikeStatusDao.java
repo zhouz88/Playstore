@@ -6,14 +6,19 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.util.List;
+
 @Dao
 public interface LikeStatusDao {
     @Query("SELECT * FROM  likeStatus WHERE uid LIKE :id LIMIT 1")
-    public LikeStatus findByName(long id);
+     LikeStatus findByName(long id);
 
     @Delete
-    public void delete(LikeStatus likeStatus);
+     void delete(LikeStatus likeStatus);
 
     @Insert
-    public void insert(LikeStatus likeStatus);
+   void insert(LikeStatus likeStatus);
+
+    @Query("SELECT * FROM likeStatus")
+    List<LikeStatus> getAll();
 }

@@ -42,7 +42,7 @@
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
                     android:text="News"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="27dp"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />

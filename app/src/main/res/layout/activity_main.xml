@@ -35,10 +35,13 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav"
-        android:background="@color/teal_200"
+        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_menu"
+        app:itemTextColor="@color/black"
+        app:itemBackground="?attr/selectableItemBackground"
+        app:itemIconTint="@color/black"
         android:layout_gravity="start"/>
 </androidx.drawerlayout.widget.DrawerLayout>
