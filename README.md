@@ -39,3 +39,5 @@ Future task: 自己完善 API 重新设计 部署 backend   (need optimation on 
 
 5 切换音乐播放 的 生命周期。允许 边看新闻边听歌  (Music mode switch feature)
 
+6 新闻加载完毕 nofication  (News notificatios)
+
