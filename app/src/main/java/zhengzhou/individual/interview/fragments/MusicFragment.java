@@ -40,7 +40,7 @@ public final class MusicFragment extends Fragment {
     }
 
     private List<SongImageResult.Al> data =  new ArrayList<>();
-
+    public MusicAdapter adapter;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -54,8 +54,9 @@ public final class MusicFragment extends Fragment {
                 return 1;
             }
         });
+        adapter = MusicAdapter.builder().context(this.getContext()).data(this.data).build();
         recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(MusicAdapter.builder().context(this.getContext()).data(this.data).build());
+        recyclerView.setAdapter(adapter);
     }
 
     @Subscribe   //这里没有指定线程模型，使用默认值

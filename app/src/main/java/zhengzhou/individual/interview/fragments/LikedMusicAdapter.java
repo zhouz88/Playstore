@@ -19,40 +19,29 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import zhengzhou.individual.interview.MainActivity;
 import zhengzhou.individual.interview.R;
 import zhengzhou.individual.interview.loadingTasks.utils.ThreadPoolUtil;
 import zhengzhou.individual.interview.musicdetails.MusicDetailsActivity;
+import zhengzhou.individual.interview.musticdetailsbackground.MusicDetailsBackgroundActivity;
 import zhengzhou.individual.interview.sqlite.LikeStatus;
 import zhengzhou.individual.interview.sqlite.Storage;
 import zhengzhou.individual.interview.util.CloudMusicService;
 import zhengzhou.individual.interview.util.SongImageResult;
 
 public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.AdapterViewHolder> {
-    private List<String> copyIds = Arrays.asList(
-            28718313 + "",
-            25880354 + "",
-            1824473080 + "",
-            1494985963 + "",
-            1406673720 + "",
-            1436384830 + "",
-            1377100917 + "",
-            1814798370 + "",
-            1494995397 + "",
-            543986441 + "",
-            1440162979 + "",
-            5142104 + "");
 
     private static final int PORGRESSBAR_TYPE = 0;
     private static final int DATA_TYPE = 1;
     private static final int NOTHING_TYPE = 2;
     private final Context context;
     private final CloudMusicService service;
+    @Getter
     private List<SongImageResult.Al> data;
     private List<SongImageResult.Al> tempList = new ArrayList<>();
     private final Object mutex = new Object();
@@ -103,6 +92,7 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
                                         final SongImageResult songResult =
                                                 service.getApi().getSongImageById(likeStatus.uid + "").execute().body();
                                         songResult.songs.get(0).al.id = likeStatus.uid;
+                                        songResult.songs.get(0).al.like = true;
                                         synchronized (mutex) {
                                             tempList.add(songResult.songs.get(0).al);
                                             if (tempList.size() == res.size()) {
@@ -149,11 +139,21 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
         holder.getCover().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MusicDetailsActivity.class);
-                intent.putExtra("imageUrl", data.get(position).picUrl);
-                intent.putExtra("musicId", data.get(position).id + "");
-                intent.putExtra("musicName", data.get(position).name + "");
-                context.startActivity(intent);
+                if (Storage.musicConfig == 0) {
+                    Intent intent = new Intent(context, MusicDetailsActivity.class);
+                    intent.putExtra("imageUrl", data.get(position).picUrl);
+                    intent.putExtra("musicId", data.get(position).id + "");
+                    intent.putExtra("musicLike", data.get(position).like);
+                    intent.putExtra("musicName", data.get(position).name + "");
+                    ((MainActivity)context).startActivityForResult(intent, 402);
+                } else {
+                    Intent intent = new Intent(context , MusicDetailsBackgroundActivity.class);
+                    intent.putExtra("imageUrl", data.get(position).picUrl);
+                    intent.putExtra("musicLike", data.get(position).like);
+                    intent.putExtra("musicId", data.get(position).id + "");
+                    intent.putExtra("musicName", data.get(position).name + "");
+                    ((MainActivity)context).startActivityForResult(intent, 402);
+                }
             }
         });
     }

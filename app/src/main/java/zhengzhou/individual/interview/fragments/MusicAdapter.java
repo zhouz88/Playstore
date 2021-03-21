@@ -26,9 +26,11 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import zhengzhou.individual.interview.MainActivity;
 import zhengzhou.individual.interview.R;
 import zhengzhou.individual.interview.loadingTasks.utils.ThreadPoolUtil;
 import zhengzhou.individual.interview.musicdetails.MusicDetailsActivity;
+import zhengzhou.individual.interview.musticdetailsbackground.MusicDetailsBackgroundActivity;
 import zhengzhou.individual.interview.sqlite.LikeStatus;
 import zhengzhou.individual.interview.sqlite.Storage;
 import zhengzhou.individual.interview.util.CloudMusicService;
@@ -37,7 +39,7 @@ import zhengzhou.individual.interview.util.SongImageResult;
 public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.AdapterViewHolder> {
 
     private List<String> copyIds = Arrays.asList(
-            28718313 + "",
+            28188307 + "",
             25880354 + "",
             1824473080 + "",
             1494985963 + "",
@@ -45,11 +47,12 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
             1436384830 + "",
             1377100917 + "",
             1814798370 + "",
-            1494995397 + "",
+            27570833 + "",
             543986441 + "",
             1440162979 + "",
             5142104 + "");
 
+    @Getter
     private List<SongImageResult.Al> data;
     private List<SongImageResult.Al> tempList = new ArrayList<>();
     private int count = 0;
@@ -60,6 +63,7 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
 
     private static final int PORGRESSBAR_TYPE = 0;
     private static final int DATA_TYPE = 1;
+    private static final int FULL_PORGRESSBAR_TYPE = 2;
     private CloudMusicService service;
     private final Handler handler = new Handler(Looper.getMainLooper());
 
@@ -80,9 +84,9 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
-        int viewType = getItemViewType(position);
-        if (viewType == PORGRESSBAR_TYPE) {
+    public void onBindViewHolder(@NonNull AdapterViewHolder holder, int pos) {
+        int viewType = getItemViewType(pos);
+        if (viewType == PORGRESSBAR_TYPE || viewType == FULL_PORGRESSBAR_TYPE) {
             for (int i = 0; i < copyIds.size(); i++) {
                 final String id = copyIds.get(i);
                 ThreadPoolUtil.getService().execute(new Runnable() {
@@ -116,6 +120,7 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
             }
             return;
         }
+        final int position = pos;
         holder.getTextView().setText(data.get(position).name);
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setUri(Uri.parse(data.get(position).picUrl))
@@ -135,11 +140,21 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
         holder.getImageView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MusicDetailsActivity.class);
-                intent.putExtra("imageUrl", data.get(position).picUrl);
-                intent.putExtra("musicId", data.get(position).id + "");
-                intent.putExtra("musicName", data.get(position).name + "");
-                context.startActivity(intent);
+                if (Storage.musicConfig == 0) {
+                    Intent intent = new Intent(context, MusicDetailsActivity.class);
+                    intent.putExtra("imageUrl", data.get(position).picUrl);
+                    intent.putExtra("musicLike", data.get(position).like);
+                    intent.putExtra("musicId", data.get(position).id + "");
+                    intent.putExtra("musicName", data.get(position).name + "");
+                    ((MainActivity)context).startActivityForResult(intent, 404);
+                } else {
+                    Intent intent = new Intent(context, MusicDetailsBackgroundActivity.class);
+                    intent.putExtra("imageUrl", data.get(position).picUrl);
+                    intent.putExtra("musicLike", data.get(position).like);
+                    intent.putExtra("musicId", data.get(position).id + "");
+                    intent.putExtra("musicName", data.get(position).name + "");
+                    ((MainActivity)context).startActivityForResult(intent, 404);
+                }
             }
         });
     }
@@ -170,6 +185,9 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
     @Override
     public int getItemViewType(int position) {
         if (showLoading) {
+            if (data.size() == 0) {
+                return FULL_PORGRESSBAR_TYPE;
+            }
             if (position < data.size()) {
                 return DATA_TYPE;
             } else {
@@ -206,6 +224,8 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
                 return R.layout.progressbar;
             case DATA_TYPE:
                 return R.layout.item_music;
+            case FULL_PORGRESSBAR_TYPE:
+                return R.layout.full_pro;
         }
         return -1;
     }
@@ -242,7 +262,7 @@ public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.Adapte
         }
     }
 
-    static class ClickRun implements Runnable {
+    public static class ClickRun implements Runnable {
         final long  item;
 
         public ClickRun(long item) {

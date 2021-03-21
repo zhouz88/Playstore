@@ -35,10 +35,12 @@ public class LikedMusicFragment extends Fragment {
     }
 
     private List<SongImageResult.Al> data =  new ArrayList<>();
+    public LikedMusicAdapter adapter;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(LikedMusicAdapter.builder().context(this.getContext()).data(this.data).build());
+        adapter =  LikedMusicAdapter.builder().context(this.getContext()).data(this.data).build();
+        recyclerView.setAdapter(adapter);
     }
 }

@@ -26,6 +26,9 @@
         <activity
             android:name=".details.DetailsActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".musticdetailsbackground.MusicDetailsBackgroundActivity" />
         <service android:name=".musicdetails.MusicService"/>
+        <service android:name=".service.BaseService"/>
     </application>
 </manifest>

@@ -65,6 +65,7 @@
         <ImageView
             android:id="@+id/toolbar_right_icon"
             android:layout_width="25dp"
+            android:src="@drawable/three_dot"
             android:layout_height="25dp"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"

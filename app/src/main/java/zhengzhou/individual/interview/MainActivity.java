@@ -1,7 +1,7 @@
 package zhengzhou.individual.interview;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,18 +9,24 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Iterator;
+
 import zhengzhou.individual.interview.fragments.LikedMusicFragment;
 import zhengzhou.individual.interview.fragments.MusicFragment;
 import zhengzhou.individual.interview.fragments.NewsFragment;
+import zhengzhou.individual.interview.util.MyDialogFragment;
+import zhengzhou.individual.interview.util.SongImageResult;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ActionBarDrawerToggle drawerToggle;
     private TextView musicButton;
     private TextView newsButton;
+    private Fragment cur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         View headerView = navigationView.getHeaderView(0);
         navigationView.setItemTextColor(
-                (ColorStateList)getResources().getColorStateList(R.color.black));
+                (ColorStateList) getResources().getColorStateList(R.color.black));
 
         ((TextView) headerView.findViewById(R.id.text_view)).setText(
                 "zheng zhou");
@@ -66,7 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.liked_news:
-                        // news fragment;
+                        DialogFragment dialogFragment = new MyDialogFragment();
+                        dialogFragment.showNow(getSupportFragmentManager(), "sdf");
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.music_likes:
                         fragment = new LikedMusicFragment();
@@ -75,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                 }
                 if (fragment != null) {
+                    cur = fragment;
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_holder, fragment).commit();
                     drawerLayout.closeDrawers();
@@ -83,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
         });
-
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_holder, new NewsFragment()).commit();
+        cur = new NewsFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_holder, cur).commit();
     }
 
     @Override
@@ -92,13 +102,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v == musicButton) {
             musicButton.setTextColor(getResources().getColor(R.color.white));
             newsButton.setTextColor(getResources().getColor(R.color.black));
+            cur =  new MusicFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder,
-                    new MusicFragment()).commit();
+                   cur).commit();
         } else {
             newsButton.setTextColor(getResources().getColor(R.color.white));
             musicButton.setTextColor(getResources().getColor(R.color.black));
+            cur = new NewsFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder,
-                    new NewsFragment()).commit();
+                    cur).commit();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 404 && resultCode == RESULT_OK) {
+            for (SongImageResult.Al datum : ((MusicFragment) cur).adapter.getData()) {
+                if (datum.id.equals(Long.parseLong(data.getStringExtra("mp3id")))) {
+                    datum.like =  data.getBooleanExtra("mp3like", false);
+                }
+            }
+            ((MusicFragment)cur).adapter.notifyDataSetChanged();
+        } else if (requestCode == 402 && resultCode == RESULT_OK) {
+            Iterator itr = ((LikedMusicFragment) cur).adapter.getData().iterator();
+            while (itr.hasNext()) {
+                SongImageResult.Al datum = (SongImageResult.Al)itr.next();
+                if (datum.id.equals(Long.parseLong(data.getStringExtra("mp3id"))) && !data.getBooleanExtra("mp3like", false) ) {
+                    itr.remove();
+                }
+            }
+            ((LikedMusicFragment)cur).adapter.notifyDataSetChanged();
         }
     }
 }
