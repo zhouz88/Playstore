@@ -61,7 +61,7 @@ int count = 0;
                         CloudMusicService.getInstance().getApi().getSongImageById(str.trim()).execute().body();
                         synchronized (mutex) {
                             count++;
-                            if (!copyIds.contains(str)) {
+                            if (!copyIds.contains(str) && "".equals(str)) {
                                 copyIds.add(str);
                             }
                             if (count == t.length) {
