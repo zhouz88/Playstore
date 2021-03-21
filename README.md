@@ -27,7 +27,7 @@ Future task: 自己完善 API 重新设计 部署 backend   (need optimation on 
 
 1 无限加载浏览功能  (Infinite loading list)
 
-2 播放 暂停 Remix音乐  (Music playing throuch MediaPlayer api)
+2 播放 暂停 Remix音乐, timer 显示进度  (Music playing throuch MediaPlayer api while using timer to show progress)
 
 
 3 点赞 Remix 功能和 收藏功能 (Like/Dislike feature)
