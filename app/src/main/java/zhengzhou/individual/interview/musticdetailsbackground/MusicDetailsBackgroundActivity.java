@@ -56,6 +56,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
     private boolean started = false;
     private boolean hasPlayer = false;
     private boolean isPlayerPlaying = false;
+    private boolean like = false;
 
     private TimerTask timerTask = new TimerTask() {
 
@@ -105,7 +106,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_launcher_foreground);
         toolbar.setTitle("");
-        ((TextView) toolbar.findViewById(R.id.toolbar_news)).setText("Music");
+        ((TextView) toolbar.findViewById(R.id.toolbar_news)).setText("Remix");
         setSupportActionBar(toolbar);
 
         toolbar_right_icon.setOnClickListener(new View.OnClickListener() {
@@ -314,7 +315,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
         unregisterReceiver(msgReceiver);
         unregisterReceiver(positionReceiver);
     }
-boolean like = false;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

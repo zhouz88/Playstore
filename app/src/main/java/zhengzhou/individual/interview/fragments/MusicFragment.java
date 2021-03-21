@@ -60,7 +60,7 @@ public final class MusicFragment extends Fragment {
     }
 
     @Subscribe   //这里没有指定线程模型，使用默认值
-    public void onStringEvent(ThumbsUpClickedEvent event) {
+    public void onStringEvent(EvbusEvent event) {
         ((TextView) event.subView)
                 .getCompoundDrawables()[0].setTint(getContext()
                 .getResources().getColor(R.color.colorPrimaryDark));

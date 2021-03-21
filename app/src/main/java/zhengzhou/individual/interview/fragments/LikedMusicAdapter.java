@@ -39,6 +39,7 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
     private static final int PORGRESSBAR_TYPE = 0;
     private static final int DATA_TYPE = 1;
     private static final int NOTHING_TYPE = 2;
+
     private final Context context;
     private final CloudMusicService service;
     @Getter
@@ -199,7 +200,7 @@ public class LikedMusicAdapter extends RecyclerView.Adapter<LikedMusicAdapter.Ad
     private int getLayoutByViewType(int viewType) {
         switch (viewType) {
             case PORGRESSBAR_TYPE:
-                return R.layout.progressbar;
+                return R.layout.full_pro;
             case DATA_TYPE:
                 return R.layout.item_music_like;
             case NOTHING_TYPE:

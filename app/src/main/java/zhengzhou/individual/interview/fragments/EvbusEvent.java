@@ -2,10 +2,10 @@ package zhengzhou.individual.interview.fragments;
 
 import android.view.View;
 
-public class ThumbsUpClickedEvent {
+public class EvbusEvent {
     public View subView;
 
-    public ThumbsUpClickedEvent(View subView) {
+    public EvbusEvent(View subView) {
         this.subView = subView;
     }
 }
