@@ -16,7 +16,11 @@ MVC
 
 由于api 不够完善。 采用少量数据不断重复来模拟无限加载列表 (主要 加强对 recyclerview 的掌握和使用)
 
-# 主要 API: 网易云 (netease cloud api) 和 News break open api： (netease music cloud api and News break open api：
+# 主要 API: 
+
+网易云 (netease cloud api) 和 News break open api： (netease music cloud api and News break open api：
+
+
 Future task: 自己完善 API 重新设计 部署 backend   (need optimation on the api)
 
 # 主要Features (major features)
