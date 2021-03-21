@@ -19,5 +19,12 @@ Future task: 自己完善 API 重新设计 部署 backend   (need optimation on 
 5 切换音乐播放 的 生命周期。允许 边看新闻边听歌  (Music mode switch feature)
 
 
+# ViewPager todolist
+
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+
+
 
 
