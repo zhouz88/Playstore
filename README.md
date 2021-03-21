@@ -10,7 +10,7 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 # 主要构架和组件 （Architecture and components）
 
-MVC
+小型应用 无构架
 
 全局 三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
 
