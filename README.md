@@ -18,10 +18,14 @@ MVC
 # 主要API (Major public apis): 
 
 网易云 (Netease cloud api) 和 News break open api： (Netease music cloud api and News break open api)
-由于api 不够完善。 采用少量数据不断重复来模拟无限加载列表 (主要 加强对 recyclerview 的掌握和使用)  (Use minor data to mock infi loading list)
 
 
-Future task: 自己完善 API 重新设计 部署 backend   (need optimation on the api)
+由于api不够完善, 采用少量数据不断重复来模拟无限加载列表 (这个app 主要是加强对各种组件的掌握和使用)
+
+(Use minor data to mock infi loading list)
+
+
+Future task: 自己完善 API 重新设计   (Need optimation on the api)
 
 # 主要Features (Major features)
 
