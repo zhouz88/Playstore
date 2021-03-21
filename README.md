@@ -1,4 +1,5 @@
-# 新闻Remix混合 安卓原生应用 （A remix/news composite android app）
+# 新闻Remix混合 安卓原生应用 
+#（A remix/news composite android app）
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
