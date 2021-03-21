@@ -47,7 +47,8 @@ public class AppInfoFragment extends Fragment implements View.OnClickListener {
     }
 
     private final Object mutex = new Object();
-int count = 0;
+    private int count = 0;
+
     @Override
     public void onClick(View v) {
         Handler handler = new Handler(Looper.getMainLooper());

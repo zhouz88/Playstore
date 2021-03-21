@@ -11,7 +11,7 @@
         android:id="@+id/title_text"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:textSize="13sp"
         android:text="Input music ids here (go to https://music.163.com/ to search)"
         android:gravity="center"
@@ -42,11 +42,12 @@
             fresco:actualImageScaleType="centerCrop"
             fresco:placeholderImage="@drawable/shot_placeholder"
             fresco:placeholderImageScaleType="centerCrop" />
-        <View
-        android:id="@+id/cover"
-        android:background="?attr/selectableItemBackground"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"/>
+
+        <zhengzhou.individual.interview.views.MyCustomView
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            fresco:customColor="@color/white"
+            fresco:customText="submit ids"/>
     </LinearLayout>
 
 
