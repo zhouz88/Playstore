@@ -8,7 +8,7 @@
 
 Rxjava, Retrofit, Room, Fresco, etc
 
-# 主要构架和组件 （architecture and components）
+# 主要构架和组件 （Architecture and components）
 
 MVC
 
