@@ -25,19 +25,21 @@ Future task: 自己完善 API 重新设计 部署 backend   (need optimation on 
 
 # 主要Features (Major features)
 
-1 播放 暂停 Remix音乐  (music playing)
+1 无限加载浏览功能  (Infinite loading list)
+
+2 播放 暂停 Remix音乐  (Music playing throuch MediaPlayer api)
 
 
-2 点赞 Remix 功能和 收藏功能 (Like/Dislike feature)
+3 点赞 Remix 功能和 收藏功能 (Like/Dislike feature)
 
 
-3 通过网易云 id 添加 Remix (Music/Remix adding feature)
+4 通过网易云 id 添加 Remix (Music/Remix adding feature)
 
 
-4 浏览少量新闻 summary, api 只提供 summary 这里主要只是为了练习. (News reading feature)
+5 浏览少量新闻 summary, api 只提供 summary 这里主要只是为了练习. (News Reading feature)
 
 
-5 切换音乐播放 的 生命周期。允许 边看新闻边听歌  (Music mode switch feature)
+6 切换音乐播放 的 生命周期。允许 边看新闻边听歌  (Remix mode switch feature)
 
-6 新闻加载完毕 nofication  (News notificatios)
+7 新闻加载完毕 nofication  (News notificatios)
 
