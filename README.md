@@ -6,7 +6,7 @@
 
 # 技术栈(Tech stack)
 
-Rxjava, Retrofit, room, fresco, etc
+Rxjava, Retrofit, Room, Fresco, etc
 
 # 主要 构架 和 组件 （architecture and components）
 
