@@ -12,7 +12,7 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 MVC
 
-全局 三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments
+全局 三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
 
 由于api 不够完善。 采用少量数据不断重复来模拟无限加载列表 (主要 加强对 recyclerview 的掌握和使用)
 
