@@ -22,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Iterator;
 
+import zhengzhou.individual.interview.fragments.AppInfoFragment;
 import zhengzhou.individual.interview.fragments.LikedMusicFragment;
 import zhengzhou.individual.interview.fragments.MusicFragment;
 import zhengzhou.individual.interview.fragments.NewsFragment;
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         fragment = new LikedMusicFragment();
                         break;
                     case R.id.nav_slideshow:
+                        fragment = new AppInfoFragment();
                         break;
                 }
                 if (fragment != null) {

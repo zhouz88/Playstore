@@ -37,7 +37,7 @@ public class DetailsPageAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return AdapterViewHolder.builder()
-                .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.progress_bar_detail,
+                .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.news_detail,
                         parent, false))
                 .build();
     }

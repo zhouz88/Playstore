@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-
-    <View
+    android:theme="@style/Theme.Splash"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:background="#514BDC"
-        android:layout_height="100dp"/>
+        android:layout_height="wrap_content"
+        android:divider="#514BDC"
+        app:elevation="0dp"
+        android:theme="@style/Theme.Splash">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <include
+                layout="@layout/app_bar"></include>
+
+            />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -21,5 +35,6 @@
     <View
         android:layout_width="match_parent"
         android:background="#514BDC"
-        android:layout_height="100dp"/>
+        android:layout_height="match_parent"/>
+
 </LinearLayout>

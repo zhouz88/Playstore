@@ -20,7 +20,6 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.Builder;
@@ -36,29 +35,9 @@ import zhengzhou.individual.interview.sqlite.Storage;
 import zhengzhou.individual.interview.util.CloudMusicService;
 import zhengzhou.individual.interview.util.SongImageResult;
 
+import static zhengzhou.individual.interview.sqlite.Storage.copyIds;
+
 public final class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.AdapterViewHolder> {
-
-    private List<String> copyIds = Arrays.asList(
-            1813200064+"",
-            1810021921+"",
-
-            28188307 + "",
-            25880354 + "",
-
-            1824473080 + "",
-            1494985963 + "",
-
-            1406673720 + "",
-            1436384830 + "",
-
-            1377100917 + "",
-            1814798370 + "",
-
-            27570833 + "",
-            543986441 + "",
-
-            1440162979 + "",
-            5142104 + "");
 
     @Getter
     private List<SongImageResult.Al> data;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:theme="@style/Theme.Splash"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="13sp"
+        android:text="Input music ids here (go to https://music.163.com/ to search)"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_width="match_parent"
+        android:hint="5287890356"
+        android:gravity="start"
+        android:singleLine="false"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray_divider"
+        android:layout_height="300dp">
+
+    </EditText>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/shot_placeholder"
+            fresco:placeholderImageScaleType="centerCrop" />
+        <View
+        android:id="@+id/cover"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
