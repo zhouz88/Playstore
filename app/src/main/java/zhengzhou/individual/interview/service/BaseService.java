@@ -1,16 +1,14 @@
 package zhengzhou.individual.interview.service;
 
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.Process;
 import android.os.Message;
-import android.widget.Toast;
+import android.os.Process;
 
 import java.util.Objects;
 
@@ -166,9 +164,14 @@ public class BaseService extends Service {
             try {
                 player = new MediaPlayer();
                 player.setDataSource(url);
-                player.prepare();
+                player.prepareAsync();
                 player.setLooping(true);
-                player.start();
+                player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        mp.start();
+                    }
+                });
                 intent.putExtra("playing", true);
                 intent.putExtra("hasPlayer", true);
                 sendBroadcast(intent);

@@ -271,6 +271,10 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
         } else if (v == btn_main_exit) {
             unbindService(connection);
             connection = null;
+            Intent intent = new Intent();
+            intent.putExtra("mp3id", mp3Id);
+            intent.putExtra("mp3like", like);
+            setResult(RESULT_OK, intent);
             finish();
         }
     }

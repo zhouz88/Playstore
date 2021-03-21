@@ -266,6 +266,10 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
         } else if (v == btn_main_exit) {
             Intent intent = new Intent(MusicDetailsBackgroundActivity.this, BaseService.class);
             stopService(intent);
+            Intent intent1 = new Intent();
+            intent1.putExtra("mp3id", mp3Id);
+            intent1.putExtra("mp3like", like);
+            setResult(RESULT_OK, intent1);
             finish();
         }
     }
