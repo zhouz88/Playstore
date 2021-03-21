@@ -8,7 +8,7 @@
         android:layout_marginTop="15dp"
         android:textColor="@color/black"
         android:gravity="center"
-        android:text="Add music from Music recommendations"
+        android:text="Add remix from Dj remix"
         android:textSize="15sp"
         android:layout_height="match_parent">
     </TextView>

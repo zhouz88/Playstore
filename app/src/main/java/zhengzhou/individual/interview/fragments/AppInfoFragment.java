@@ -21,7 +21,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import zhengzhou.individual.interview.R;
 import zhengzhou.individual.interview.loadingTasks.utils.ThreadPoolUtil;
 import zhengzhou.individual.interview.util.CloudMusicService;
-import zhengzhou.individual.interview.util.SongImageResult;
 
 import static zhengzhou.individual.interview.sqlite.Storage.copyIds;
 
@@ -61,7 +60,7 @@ int count = 0;
                         CloudMusicService.getInstance().getApi().getSongImageById(str.trim()).execute().body();
                         synchronized (mutex) {
                             count++;
-                            if (!copyIds.contains(str) && "".equals(str)) {
+                            if (!copyIds.contains(str) && !"".equals(str)) {
                                 copyIds.add(str);
                             }
                             if (count == t.length) {
