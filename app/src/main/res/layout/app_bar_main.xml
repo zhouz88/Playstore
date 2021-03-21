@@ -63,7 +63,7 @@
                     android:gravity="center"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:text="Music"
+                    android:text="Dj Remix"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
