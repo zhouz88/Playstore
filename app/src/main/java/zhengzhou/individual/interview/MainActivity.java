@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.navigation.NavigationView;
@@ -73,7 +74,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.liked_news:
-                        DialogFragment dialogFragment = new MyDialogFragment();
+                        DialogFragment dialogFragment;
+                        if (cur instanceof MusicFragment) {
+                           dialogFragment = new MyDialogFragment(((MusicFragment) cur).adapter);
+                        } else if (cur instanceof LikedMusicFragment) {
+                           dialogFragment = new MyDialogFragment(((LikedMusicFragment) cur).adapter);
+                        } else {
+                           dialogFragment = new MyDialogFragment();
+                        }
                         dialogFragment.showNow(getSupportFragmentManager(), "sdf");
                         drawerLayout.closeDrawers();
                         break;

@@ -10,10 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import zhengzhou.individual.interview.sqlite.Storage;
 
 public class MyDialogFragment extends DialogFragment {
+    RecyclerView.Adapter adapter;
+
+    public MyDialogFragment(RecyclerView.Adapter... adapter) {
+        this.adapter = adapter.length==0? null:adapter[0];
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,9 @@ public class MyDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Storage.musicConfig = 1;
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                }
                 if (dialog != null) {
                     dialog.dismiss();
                 }
@@ -49,6 +58,9 @@ public class MyDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Storage.musicConfig = 0;
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                }
                 if (dialog != null) {
                     dialog.dismiss();
                 }
