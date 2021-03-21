@@ -18,7 +18,7 @@ MVC
 
 # 主要 API: 
 
-网易云 (netease cloud api) 和 News break open api： (netease music cloud api and News break open api：
+网易云 (netease cloud api) 和 News break open api： (netease music cloud api and News break open api)
 
 
 Future task: 自己完善 API 重新设计 部署 backend   (need optimation on the api)
