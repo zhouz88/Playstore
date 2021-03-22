@@ -14,7 +14,7 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 全局 三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
 
-问题: UI在部分手机会出现异常
+问题: UI并没有考虑全部的 devices
 
 # 主要API (Major public apis): 
 
