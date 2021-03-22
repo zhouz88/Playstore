@@ -20,7 +20,7 @@ Rxjava, Retrofit, Room, Fresco, etc
 网易云 (Netease cloud api) 和 News break open api： (Netease music cloud api and News break open api)
 
 
-由于api不够完善, 采用少量数据不断重复来模拟无限加载列表 (这个app 主要是加强对各种组件的掌握和使用)
+由于api不够完善, 采用少量数据不断重复来模拟无限加载列表 UI在部分手机会出现异常 (这个app 主要是加强对各种组件的掌握和使用)
 
 (Use minor data to mock infi loading list)
 
