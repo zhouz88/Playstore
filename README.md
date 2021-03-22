@@ -45,5 +45,5 @@ Future task: 自己完善 API 重新设计   (Need optimation on the api)
 
 6 切换音乐播放 的 生命周期。允许 边看新闻边听歌  (Remix mode switch feature)
 
-7 新闻加载完毕 nofication  (News notificatios)
+7 新闻加载完毕 nofication  (News notifications)
 
