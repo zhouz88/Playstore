@@ -14,13 +14,14 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 全局 三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
 
+问题: UI在部分手机会出现异常
 
 # 主要API (Major public apis): 
 
 网易云 (Netease cloud api) 和 News break open api： (Netease music cloud api and News break open api)
 
 
-由于api不够完善, 采用少量数据不断重复来模拟无限加载列表 UI在部分手机会出现异常 (这个app 主要是加强对各种组件的掌握和使用)
+问题: 由于api不够完善, 采用少量数据不断重复来模拟无限加载列表 (这个app 主要是加强对各种组件的掌握和使用)
 
 (Use minor data to mock infi loading list)
 
