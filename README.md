@@ -12,7 +12,7 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 小型应用 无构架
 
-全局 三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
+由三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
 
 问题: UI并没有考虑全部的 devices
 
@@ -46,5 +46,5 @@ Future task: 自己完善 API 重新设计   (Need optimation on the api)
 
 6 切换音乐播放 的 生命周期。允许 边看新闻边听歌  (Remix mode switch feature)
 
-7 新闻加载完毕 nofication  (News notifications)
+7 新闻加载完毕 notification  (News notifications)
 
