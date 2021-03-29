@@ -19,7 +19,7 @@
             android:theme="@style/Theme.InterviewMain">
 
             <include
-                android:id="@+id/toolbar"
+                android:id="@+id/tool_bar"
                 layout="@layout/app_bar_main"></include>
 
         </com.google.android.material.appbar.AppBarLayout>

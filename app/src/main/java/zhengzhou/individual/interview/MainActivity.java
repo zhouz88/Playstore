@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav);
@@ -52,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(drawerToggle);
 
-        newsButton = toolbar.findViewById(R.id.toolbar_news);
-        musicButton = toolbar.findViewById(R.id.toolbar_music);
+        newsButton = findViewById(R.id.toolbar_news);
+        musicButton = findViewById(R.id.toolbar_music);
 
         newsButton.setOnClickListener(this);
         musicButton.setOnClickListener(this);
