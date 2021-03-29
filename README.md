@@ -48,3 +48,9 @@ Future task: 自己完善 API 重新设计   (Need optimation on the api)
 
 7 新闻加载完毕 notification  (News notifications)
 
+# Playstore 下载
+
+
+https://play.google.com/store/apps/details?id=zhengzhou.individual.interview
+
+
