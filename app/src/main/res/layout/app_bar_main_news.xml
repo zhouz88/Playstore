@@ -27,11 +27,7 @@
             android:text="News"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/cons_layout"
-            app:layout_constraintLeft_toLeftOf="@id/cons_layout"
-            app:layout_constraintRight_toRightOf="@id/cons_layout"
-            app:layout_constraintTop_toTopOf="@id/cons_layout" />
+            android:textStyle="bold"/>
 
 
         <ImageView
@@ -41,11 +37,7 @@
             android:layout_height="25dp"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
-            android:layout_gravity="end"
-            app:layout_constraintBottom_toBottomOf="@id/cons_layout"
-            app:layout_constraintLeft_toLeftOf="@id/cons_layout"
-            app:layout_constraintRight_toRightOf="@id/cons_layout"
-            app:layout_constraintTop_toTopOf="@id/cons_layout" />
+            android:layout_gravity="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
