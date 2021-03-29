@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="zhengzhou.individual.interview">
+    package="zhengzhou.individual.catsDj">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".AppApplication"
+        android:name="zhengzhou.individual.catsDj.AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_cat"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.InterviewMain">
-        <activity android:name=".SplashActivity" android:theme="@style/Theme.Splash">
+        <activity android:name="zhengzhou.individual.catsDj.SplashActivity" android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,20 +19,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".musicdetails.MusicDetailsActivity"
+            android:name="zhengzhou.individual.catsDj.musicdetails.MusicDetailsActivity"
             android:launchMode="singleTop"></activity>
         <activity
-            android:name=".loadingTasks.LoadingActivity"
+            android:name="zhengzhou.individual.catsDj.loadingTasks.LoadingActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".MainActivity">
+        <activity android:name="zhengzhou.individual.catsDj.MainActivity">
         </activity>
         <activity
-            android:name=".details.DetailsActivity"
+            android:name="zhengzhou.individual.catsDj.details.DetailsActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".musticdetailsbackground.MusicDetailsBackgroundActivity" />
+        <activity android:name="zhengzhou.individual.catsDj.musticdetailsbackground.MusicDetailsBackgroundActivity" />
 
-        <service android:name=".musicdetails.MusicService" />
-        <service android:name=".service.BaseService" />
+        <service android:name="zhengzhou.individual.catsDj.musicdetails.MusicService" />
+        <service android:name="zhengzhou.individual.catsDj.service.BaseService" />
     </application>
 
 </manifest>

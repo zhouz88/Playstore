@@ -43,7 +43,7 @@
             fresco:placeholderImage="@drawable/shot_placeholder"
             fresco:placeholderImageScaleType="centerCrop" />
 
-        <zhengzhou.individual.interview.views.MyCustomView
+        <zhengzhou.individual.catsDj.views.MyCustomView
             android:layout_width="match_parent"
             android:layout_height="240dp"
             fresco:customColor="@color/white"
