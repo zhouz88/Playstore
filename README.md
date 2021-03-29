@@ -53,4 +53,7 @@ Future task: 自己完善 API 重新设计   (Need optimation on the api)
 
 https://play.google.com/store/apps/details?id=zhengzhou.individual.interview
 
+# App 下载
+
+不久会会推出IOS版 欢迎下载:)
 
