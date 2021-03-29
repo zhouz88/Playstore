@@ -72,6 +72,7 @@ android:layout_height="55dp">
 
     <ImageView
         android:id="@+id/toolbar_right_icon"
+        android:visibility="gone"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginRight="15dp"
