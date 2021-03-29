@@ -14,8 +14,6 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 由三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
 
-问题: UI并没有考虑全部的 devices
-
 # 主要API (Major public apis): 
 
 网易云 (Netease cloud api) 和 News break open api： (Netease music cloud api and News break open api)
