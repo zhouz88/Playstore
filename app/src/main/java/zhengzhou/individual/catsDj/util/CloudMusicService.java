@@ -18,6 +18,7 @@ public class CloudMusicService {
                         // https://stackoverflow.com/questions/43434073/unable-to-create-call-adapter-for-io-reactivex-observable
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create())
+                        .client(UnsafeClient.getUnsafeOkHttpClient())
                         .build()
                         .create(CloudMusicApiInterface.class);
             }
