@@ -56,6 +56,7 @@ https://play.google.com/store/apps/details?id=zhengzhou.individual.interview （
 
 # 截图
 
+<img src="https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340647.png" width = "210" height = "375" alt="图片名称" align=center />
 <img src="https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340605.png" width = "210" height = "375" alt="图片名称" align=center />
 <img src="https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340615.png" width = "210" height = "375" alt="图片名称" align=center />
 <img src="https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340619.png" width = "210" height = "375" alt="图片名称" align=center />
