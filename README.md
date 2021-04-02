@@ -51,7 +51,7 @@ Future task: 自己完善 API 重新设计   (Need optimation on the api)
 # Playstore 下载
 
 
-https://play.google.com/store/apps/details?id=zhengzhou.individual.interview
+https://play.google.com/store/apps/details?id=zhengzhou.individual.interview （SSL error）
 
 # AppStore 下载
 
