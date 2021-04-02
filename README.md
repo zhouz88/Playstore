@@ -56,7 +56,14 @@ https://play.google.com/store/apps/details?id=zhengzhou.individual.interview （
 
 # 截图
 
+![avatar](https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340605.png)
+![avatar](https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340615.png)
+![avatar](https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340619.png)
+![avatar](https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340624.png)
+![avatar](https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340629.png)
+![avatar](https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340640.png)
 ![avatar](https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617340651.png)
+
 
 # AppStore 下载
 
