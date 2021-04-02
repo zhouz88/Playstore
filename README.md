@@ -67,9 +67,6 @@ https://play.google.com/store/apps/details?id=zhengzhou.individual.interview （
 <img src="https://github.com/zhouz88/Playstore/blob/addFeature/images/Screenshot_1617342053.png" width = "210" height = "375" alt="图片名称" align=center />
 
 
-# AppStore 下载
-
-不久后会会推出IOS版 欢迎下载:)
 
 
 
