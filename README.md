@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-# 技术栈(Tech stack)
+# 使用的相关技术(Techniques)
 
 Rxjava, Retrofit, Room, Fresco, etc
 
