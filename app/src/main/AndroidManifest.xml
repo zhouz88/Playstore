@@ -14,23 +14,14 @@
         <activity android:name="zhengzhou.individual.catsDj.SplashActivity" android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="zhengzhou.individual.catsDj.musicdetails.MusicDetailsActivity"
-            android:launchMode="singleTop"></activity>
-        <activity
-            android:name="zhengzhou.individual.catsDj.loadingTasks.LoadingActivity"
-            android:launchMode="singleTop" />
-        <activity android:name="zhengzhou.individual.catsDj.MainActivity">
-        </activity>
-        <activity
-            android:name="zhengzhou.individual.catsDj.details.DetailsActivity"
-            android:launchMode="singleTop" />
+        <activity android:name="zhengzhou.individual.catsDj.musicdetails.MusicDetailsActivity"/>
+        <activity android:name="zhengzhou.individual.catsDj.loadingTasks.LoadingActivity" />
+        <activity android:name="zhengzhou.individual.catsDj.MainActivity"/>
+        <activity android:name="zhengzhou.individual.catsDj.details.DetailsActivity" />
         <activity android:name="zhengzhou.individual.catsDj.musticdetailsbackground.MusicDetailsBackgroundActivity" />
-
         <service android:name="zhengzhou.individual.catsDj.musicdetails.MusicService" />
         <service android:name="zhengzhou.individual.catsDj.service.BaseService" />
     </application>
