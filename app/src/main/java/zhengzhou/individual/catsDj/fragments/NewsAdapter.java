@@ -76,7 +76,7 @@ public final class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterV
             lgt -= 5;
             ltd += 5;
             api.callGetNewsApiObserver(key)
-                    .subscribeOn(Schedulers.newThread())
+                    .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<ResponseResult>() {
                         @Override
