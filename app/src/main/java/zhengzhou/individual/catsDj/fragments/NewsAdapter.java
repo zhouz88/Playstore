@@ -88,6 +88,7 @@ public final class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.AdapterV
                         public void onNext(ResponseResult value) {
                             if (value.result.size() == 0 || value.result.get(0).documents.size() == 0) {
                                 showLoading = false;
+                                notifyDataSetChanged();
                                 return;
                             }
                             data.addAll(value.result.get(0).documents);
