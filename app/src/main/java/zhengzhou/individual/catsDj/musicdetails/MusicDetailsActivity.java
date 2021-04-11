@@ -12,6 +12,7 @@ import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -56,6 +57,7 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
     private MusicService musicService;
     private boolean mBound = false;
     private boolean started = false;
+    private Animation animation;
     private boolean like;
 
     private TimerTask timerTask = new TimerTask() {
@@ -139,7 +141,7 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
         iv = findViewById(R.id.image_view);
         iv.setController(controller);
         seekbar = findViewById(R.id.seekbar);
-
+        animation = AnimationUtils.loadAnimation(this, R.anim.filename);
         this.btn_main_play = findViewById(R.id.btn_main_play);
         this.btn_main_stop = findViewById(R.id.btn_main_stop);
         this.btn_main_pause = findViewById(R.id.btn_main_pause);
@@ -227,6 +229,7 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
     @Override
     public void onClick(View v) {
         if (v == btn_main_play && !started) {
+            btn_main_play.startAnimation(animation);
             started = true;
             if (mp3Url == null) {
                 ThreadPoolUtil.getService().execute(new Runnable() {
@@ -257,6 +260,7 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
             }
         } else if (v == btn_main_stop) {
             if (musicService.getPlayer() != null) {
+                btn_main_stop.startAnimation(animation);
                 musicService.stopMusic();
                 started = false;
                 seekbar.setProgress(0);
@@ -264,11 +268,13 @@ public final class MusicDetailsActivity extends AppCompatActivity implements Vie
             }
         } else if (v == btn_main_pause) {
             if (musicService.getPlayer() != null && musicService.getPlayer().isPlaying()) {
+                btn_main_pause.startAnimation(animation);
                 musicService.pauseMusic();
                 started = false;
                 mAnimator.pause();
             }
         } else if (v == btn_main_exit) {
+            btn_main_exit.startAnimation(animation);
             unbindService(connection);
             connection = null;
             Intent intent = new Intent();

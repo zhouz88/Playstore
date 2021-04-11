@@ -12,6 +12,7 @@ import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -85,7 +86,8 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
     private MsgReceiver msgReceiver;
     private PositionReceiver positionReceiver;
     private boolean intentToServiceUpdated = true;
-   //All services must be represented by
+    private Animation animation;
+    //All services must be represented by
    // <service> elements in the manifest file. Any that are not declared
    // there will not be seen by the system and will never be run.
     @Override
@@ -177,6 +179,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
         iv = findViewById(R.id.image_view);
         iv.setController(controller);
         seekbar = findViewById(R.id.seekbar);
+        animation = AnimationUtils.loadAnimation(this, R.anim.filename);
 
         this.btn_main_play = findViewById(R.id.btn_main_play);
         this.btn_main_stop = findViewById(R.id.btn_main_stop);
@@ -206,6 +209,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
     public void onClick(View v) {
         if (v == btn_main_play && !started) {
             started = true;
+            btn_main_play.startAnimation(animation);
             if (mp3Url == null) {
                 ThreadPoolUtil.getService().execute(new Runnable() {
                     @Override
@@ -247,6 +251,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
             }
         } else if (v == btn_main_stop) {
             if (intentToServiceUpdated && hasPlayer) {
+                btn_main_stop.startAnimation(animation);
                 Intent intent = new Intent( MusicDetailsBackgroundActivity.this, BaseService.class);
                 setFalse();
                 intent.putExtra("action", "stop");
@@ -257,6 +262,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
             }
         } else if (v == btn_main_pause) {
             if (intentToServiceUpdated && hasPlayer && isPlayerPlaying) {
+                btn_main_pause.startAnimation(animation);
                 setFalse();
                 Intent intent = new Intent( MusicDetailsBackgroundActivity.this, BaseService.class);
                 intent.putExtra("action", "pause");
@@ -265,6 +271,7 @@ public final class MusicDetailsBackgroundActivity extends AppCompatActivity impl
                 mAnimator.pause();
             }
         } else if (v == btn_main_exit) {
+            btn_main_exit.startAnimation(animation);
             Intent intent = new Intent(MusicDetailsBackgroundActivity.this, BaseService.class);
             stopService(intent);
             Intent intent1 = new Intent();

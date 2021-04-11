@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <rotate
+        android:duration="200"
+        android:fromDegrees="0"
+        android:toDegrees="5"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:anim/accelerate_interpolator"/>
+
+    <rotate
+        android:startOffset="200"
+        android:duration="200"
+        android:fromDegrees="0"
+        android:toDegrees="-10"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:anim/accelerate_interpolator"/>
+
+    <rotate
+        android:startOffset="400"
+        android:duration="200"
+        android:fromDegrees="0"
+        android:toDegrees="10"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:anim/accelerate_interpolator"/>
+
+    <rotate
+        android:startOffset="600"
+        android:duration="200"
+        android:fromDegrees="0"
+        android:toDegrees="-10"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:anim/accelerate_interpolator"/>
+
+    <rotate
+        android:startOffset="800"
+        android:duration="200"
+        android:fromDegrees="0"
+        android:toDegrees="10"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:anim/accelerate_interpolator"/>
+
+    <rotate
+        android:startOffset="1000"
+        android:duration="200"
+        android:fromDegrees="0"
+        android:toDegrees="-5"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:anim/accelerate_interpolator"/>
+
+</set>
