@@ -12,7 +12,7 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 小型单进程应用
 
-由三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View
+由三个activities, 两个services, 两个 broadcast receivers 其中 主Activity 含有4个fragments, 1 个 自定义 View (Flowlayout)
 
 Future task: 采用多进程 run 后台service
 
