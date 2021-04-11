@@ -6,6 +6,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 import zhengzhou.individual.catsDj.sqlite.Storage;
 import zhengzhou.individual.catsDj.util.ImagePipelineConfigFactory;
+import zhengzhou.individual.catsDj.util.SafeClient;
 
 public class AppApplication extends Application {
 
@@ -15,5 +16,6 @@ public class AppApplication extends Application {
         super.onCreate();
         Fresco.initialize(this, ImagePipelineConfigFactory.getImagePipelineConfig(this));
         Storage.init(this);
+        SafeClient.init(this);
     }
 }
