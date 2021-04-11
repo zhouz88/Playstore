@@ -36,32 +36,41 @@ public class DetailsPageAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return AdapterViewHolder.builder()
-                .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.news_detail,
-                        parent, false))
-                .build();
+        if (viewType == 0) {
+            return AdapterViewHolder.builder()
+                    .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.news_detail,
+                            parent, false))
+                    .build();
+        } else {
+            return AdapterViewHolder.builder()
+                    .itemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.news_details_flow,
+                            parent, false))
+                    .build();
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((AdapterViewHolder) holder).getTextView().setText(text);
-        ((AdapterViewHolder) holder).getTitleView().setText(textTitle);
-        final DetailsActivity activity = (DetailsActivity) context;
-        ((AdapterViewHolder) holder).getImageView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.setResult(Activity.RESULT_OK);
-                activity.finish();
-            }
-        });
-        DetailsPageAsyncTask task = new DetailsPageAsyncTask(imageUrl, (AdapterViewHolder) holder);
-        task.execute();
+        if (position == 0) {
+            ((AdapterViewHolder) holder).getTextView().setText(text);
+            ((AdapterViewHolder) holder).getTitleView().setText(textTitle);
+            final DetailsActivity activity = (DetailsActivity) context;
+            ((AdapterViewHolder) holder).getImageView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    activity.setResult(Activity.RESULT_OK);
+                    activity.finish();
+                }
+            });
+            DetailsPageAsyncTask task = new DetailsPageAsyncTask(imageUrl, (AdapterViewHolder) holder);
+            task.execute();
+        }
     }
 
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 2;
     }
 
     @Override

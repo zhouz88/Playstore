@@ -16,7 +16,6 @@
         android:gravity="center"
         />
 
-
     <com.facebook.drawee.view.SimpleDraweeView
         android:layout_marginTop="15dp"
         android:id="@+id/image_view"
@@ -47,5 +46,4 @@
         android:maxHeight="4dp"
         android:minHeight="4dp"
         tools:ignore="MissingConstraints" />
-
 </LinearLayout>
