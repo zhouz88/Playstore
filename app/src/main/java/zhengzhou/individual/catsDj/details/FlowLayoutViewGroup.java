@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,13 +110,8 @@ public final class FlowLayoutViewGroup extends ViewGroup {
         if (lineViews.size() != 0) {
             parentNeededWidth = Math.max(parentNeededWidth, lineWidthUsed + mHorizontalSpacing);
             parentNeededHeight += lineHeight + mVerticalSpacing;
-            parentNeededHeight += lineHeight + mVerticalSpacing;
             allLines.add(lineViews);
             lineHeights.add(lineHeight);
-
-            lineViews = new ArrayList<>();
-            lineWidthUsed = 0;
-            lineHeight = 0;
         }
         int wMode = MeasureSpec.getMode(widthMeasureSpec);
         int hMode = MeasureSpec.getMode(heightMeasureSpec);
