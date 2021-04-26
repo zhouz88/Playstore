@@ -2,7 +2,6 @@ package zhengzhou.individual.catsDj;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +18,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Iterator;
@@ -30,7 +29,6 @@ import zhengzhou.individual.catsDj.fragments.MusicFragment;
 import zhengzhou.individual.catsDj.fragments.NewsFragment;
 import zhengzhou.individual.catsDj.util.MyDialogFragment;
 import zhengzhou.individual.catsDj.util.SongImageResult;
-import zhengzhou.individual.catsDj.R;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -71,7 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageView imageView = headerView.findViewById(R.id.image_view);
                 //.setImageURI(Uri.parse("https://p1.music.126.net/4DRm5E8ahUJu5r1c4cNNbQ==/2450811418334469.jpg"));
-        Glide.with(this).load("https://p1.music.126.net/4DRm5E8ahUJu5r1c4cNNbQ==/2450811418334469.jpg").into(imageView);
+        RequestOptions requetOptions = new RequestOptions().placeholder(R.mipmap.ic_cat).error(R.mipmap.ic_cat).fallback(R.mipmap.ic_cat);
+        Glide.with(this)
+                .load("https://p1.music.126.net/4DRm5E8ahUJu5r1c4cNNbQ==/2450811418334469.jpg")
+                .apply(requetOptions)
+                .into(imageView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
