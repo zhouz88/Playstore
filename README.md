@@ -1,14 +1,14 @@
-# 新闻Remix混合 安卓原生应用 (A remix/news composite android app）
+# 新闻Remix混合 安卓原生应用
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-# 使用的相关技术(Techniques)
+# 使用的相关技术
 
 Rxjava, Retrofit, Room, Fresco, etc
 
-# 主要构架和组件 （Architecture and components）
+# 主要构架和组件 
 
 小型单进程应用
 
@@ -16,7 +16,7 @@ Rxjava, Retrofit, Room, Fresco, etc
 
 Future task: 采用多进程 run 后台service
 
-# 主要API (Major public apis): 
+# 主要API
 
 网易云 (Netease cloud api) 和 News break open api： (Netease music cloud api and News break open api)
 
@@ -28,7 +28,7 @@ Future task: 采用多进程 run 后台service
 
 Future task: 自己完善 API 重新设计   (Need optimation on the api)
 
-# 主要Features (Major features)
+# 主要Features
 
 1 无限加载浏览功能  (Infinite loading list)
 
