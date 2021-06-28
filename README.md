@@ -30,7 +30,7 @@ Future task: 自己完善 API 重新设计   (Need optimation on the api)
 
 # 主要Features
 
-1 无限加载浏览功能  (Infinite loading list)
+1 下拉加载浏览功能  (Infinite loading list)
 
 2 播放 暂停 Remix音乐, timer 显示进度  (Music playing throuch MediaPlayer api while using timer to show progress)
 
